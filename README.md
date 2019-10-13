@@ -13,7 +13,7 @@ to use in your own browser:
 7. enter the 'build' folder of the unifit file and allow it to upload into chrome
 8. you should be good to go!
 
-(relevant files: App.js, manifest.json, App.css)
+(relevant files: src/App.js, manifest.json, src/App.css)
 
 foreseeable troubleshooting:
 
