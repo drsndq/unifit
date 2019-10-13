@@ -4,12 +4,7 @@ import "./App.css";
 import MultiStep from "react-multistep";
 import Select from "react-select";
 
-function sortAlphabet(str) {
-  return [...str].sort((a, b) => a.localeCompare(b));
-}
-
 const womensPantSizes = [
-  "00",
   "0",
   "2",
   "4",
@@ -83,8 +78,15 @@ function App() {
   const UserStep = () => {
     return (
       <>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name"></input>
+        <div>
+          <p>Welcome to UniFit</p>
+        </div>
+        <div>
+          <label htmlFor="name" id="nameLabel">
+            Name:
+          </label>
+          <input type="text" name="name" id="name" autoFocus></input>
+        </div>
       </>
     );
   };
@@ -93,9 +95,7 @@ function App() {
     return (
       <>
         <p>Which section do you typically buy pants from?</p>
-        <select
-          id="sex"
-        >
+        <select id="sex">
           <option value="female">Women's</option>
           <option value="male">Men's</option>
         </select>
@@ -106,23 +106,27 @@ function App() {
   const TopsStep = () => {
     return (
       <>
-        <label htmlFor="sizes">What's the size of your favorite shirt?</label>
-        <select name="sizes">
-          <option value="XXXS">XXXS</option>
-          <option value="XXS">XXS</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-          <option value="XXXL">XXXL</option>
-          <option value="XXXXL">XXXXL</option>
-        </select>
-        <label htmlFor="favStore">
-          Where'd you buy your favorite shirt from?
-        </label>
-        <Select options={stores} />
+        <div>
+          <label htmlFor="sizes">What's the size of your favorite shirt?</label>
+          <select name="sizes">
+            <option value="XXXS">XXXS</option>
+            <option value="XXS">XXS</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            <option value="XXXL">XXXL</option>
+            <option value="XXXXL">XXXXL</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="favStore">
+            Where'd you buy your favorite shirt from?
+          </label>
+          <Select options={stores} />
+        </div>
       </>
     );
   };
@@ -130,35 +134,42 @@ function App() {
   const BottomsStep = () => {
     return (
       <>
-        <label htmlFor="sizes">
-          What's the size of your favorite pair of bottoms?
-        </label>
-        {
-          <select>
-            {womensPantSizes.map(size => {
-              return <option value={size}>{parseInt(size)}</option>;
-            })}
+        <div>
+          <label htmlFor="sizes">
+            What's the size of your favorite pair of bottoms?
+          </label>
+
+          {
+            <select>
+              {womensPantSizes.map(size => {
+                return <option value={size}>{parseInt(size)}</option>;
+              })}
+            </select>
+          }
+        </div>
+        <div>
+          <label htmlFor="favStore">
+            Where'd you buy your favorite bottoms from?
+          </label>
+          <Select options={stores} />
+        </div>
+        <div>
+          <label htmlFor="type">What kind of bottoms are they?</label>
+          <select name="type">
+            <option value="Jeans">Jeans</option>
+            <option value="Bootcut Jeans">Bootcut Jeans</option>
+            <option value="Skinny Jeans">Skinny Jeans</option>
+            <option value="High-Waisted Jeans">High-Waisted Jeans</option>
+            <option value="Boyfriend Jeans">Boyfriend Jeans</option>
+            <option value="Dress Pants">Dress Pants</option>
+            <option value="Chinos">Chinos</option>
+            <option value="Capris">Capris</option>
+            <option value="Slacks">Slacks</option>
+            <option value="Shorts">Shorts</option>
+            <option value="Skirt">Skirt</option>
+            <option value="Samba Pants">Samba Pants</option>
           </select>
-        }
-        <label htmlFor="favStore">
-          Where'd you buy your favorite bottoms from?
-        </label>
-        <Select options={stores} />
-        <label htmlFor="type">What kind of bottoms are they?</label>
-        <select name="type">
-          <option value="Jeans">Jeans</option>
-          <option value="Bootcut Jeans">Bootcut Jeans</option>
-          <option value="Skinny Jeans">Skinny Jeans</option>
-          <option value="High-Waisted Jeans">High-Waisted Jeans</option>
-          <option value="Boyfriend Jeans">Boyfriend Jeans</option>
-          <option value="Dress Pants">Dress Pants</option>
-          <option value="Chinos">Chinos</option>
-          <option value="Capris">Capris</option>
-          <option value="Slacks">Slacks</option>
-          <option value="Shorts">Shorts</option>
-          <option value="Skirt">Skirt</option>
-          <option value="Samba Pants">Samba Pants</option>
-        </select>
+        </div>
       </>
     );
   };
@@ -168,7 +179,6 @@ function App() {
       <>
         <p>
           Thanks! You're now ready to always get the right size.
-          <a href="feathr.co">Let's get shopping!</a>
         </p>
       </>
     );
@@ -179,9 +189,14 @@ function App() {
     setNavigation(false);
     return (
       <figure>
-    <img src="https://live.staticflickr.com/65535/48890555803_cd16054dd1_k.jpg" alt="logo" width="256" height="256" />
-    <figcaption>UniFit recommends you purchase a Medium</figcaption>
-    </figure>
+        <img
+          src="https://live.staticflickr.com/65535/48890555803_cd16054dd1_k.jpg"
+          alt="logo"
+          width="256"
+          height="256"
+        />
+        <figcaption className="hmcaption">Recommended Size:<br/><strong>Medium</strong></figcaption>
+      </figure>
     );
   };
 
@@ -194,13 +209,15 @@ function App() {
     { name: "H&M", component: <HMStep /> }
   ];
   return (
-    <div className="app">
-      {!lastStep && <img
-        src="https://live.staticflickr.com/65535/48890949031_d7a50a2f2b_k.jpg"
-        width="256"
-        height="256"
-        alt="Untitled_Artwork 2"
-      />}
+    <div className={!lastStep ? "app" : "website"}>
+      {!lastStep && (
+        <img
+          src="https://lh3.googleusercontent.com/OIaR2B4Y0JufzrcKq-6sXmXNfYkMyLHr3Dh4dRGfSWInBT3OEnh_ijqR7R8Pch5P9k6YGXY_ggT6nldaQLzyb0IXqGzT77lIooZiTtJ7vesygiMh1LkvA-l3f3IuNIMBF-fX7Z_2sBOYrpbwFIvO0s_tsftKQxj1bPT1QobVtbfe1P-YBIZfHB3q5lVfNeHhv_s4a77VJFZnDuBNG85amj14iZw2ueaHZndyGFCTfSeCvAeAxwcHG_iQOAZxbsRG4Hv7BybK8BXA1KzkTu7MzD-N8ScIYE71fuNt_qayZ5BfN5dHrl5AH4b1MLsDHAl_U0Rw9gFj1VEO_7otT7WOg8gGvx4qLMfnb69KEjPbhVgEhX5aOG5eIIX0e57DqIyeYuQO1eiacGseMUNYxWOtzPHM2CD_E0aSRNStbKZ2cMten0X4quy4cZmraLNR3rbNdVePQOuk7j6ClcGidSLtefquNZSFvA2Abl9aucPFxfcIddkih4jz9juEbY9oV_Z4_5U9PjlF8VPpxUvIh2HOF_3tQrWKf6gJH7dBuzf3qHImeetFqOdZLSCl-rapN1E5N7m8ExbSh4U4AMgzxrZrsXOIp7nrJrvwW5JKGjvGsyJ-L0MXqdZORrzHJ7zOmYkN9lUEEJpumQwsx-w4_Co-lTk2h2TAhQOIudAi2t0x0KIp0BtpZ474VuzIwKMNGoOH1puQ-k2UwLMQ_spmD5_51oklBnwuiXHf8tn3mpRP=s1532-no"
+          width="256"
+          height="256"
+          alt="Untitled_Artwork 2"
+        />
+      )}
       <MultiStep showNavigation={navigationState} steps={steps} />
     </div>
   );

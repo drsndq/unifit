@@ -26,10 +26,25 @@
   font-size: 0;
 }
 
+.website {
+  background-color: none;
+}
+
+.hmcaption {
+  text-align: center;
+  font-family: "Verdana";
+  font-weight: lighter bold;
+  font-size: 18px;
+}
+
 .app {
   background: linear-gradient(225deg, #f4b160, #f59987, #d5c2f0, #caefea, #f6f38b);
   background-size: 800% 800%;
-  
+  height: 450px;
+  width: 300px;
+  font-size: 16px;
+  font-family: "Verdana";
+  text-align: center;
   -webkit-animation: AnimationName 30s ease infinite;
   -moz-animation: AnimationName 30s ease infinite;
   animation: AnimationName 30s ease infinite;
@@ -49,3 +64,41 @@
   50%{background-position:96% 100%}
   100%{background-position:5% 0%}
   }
+
+#name :focus {
+  background-color: transparent;
+  border-color: transparent;
+
+}
+#name {
+  background-color: transparent;
+  border-color: transparent;
+  color: black;
+  font-size: 20px;
+  color: black;
+  width: 160px;
+}
+
+#nameLabel {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+button {
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  border-color: black;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+button:hover {
+  border-color: black;
+  border-radius: 4px;
+  margin-top: 5px;
+
+}

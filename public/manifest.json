@@ -7,6 +7,7 @@
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
+  "icons": {"128": "appicon128.png"},
   "content_security_policy": "script-src 'self' 'sha256-+mkWTL4LTUsqqdYW899Ywr5c5HOx8HbDxkRce4ytvrA='; object-src 'self'",
   "permissions": ["storage"]
 }
