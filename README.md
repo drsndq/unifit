@@ -6,7 +6,7 @@ to use in your own browser:
 
 1. copy this repository onto your computer
 2. enter the terminal and use `cd` to change directories until you are in the unifit folder
-3. use `npm install` to install all necessary dependencies to run the application locally
+3. use `npm install` to install all necessary dependencies to run the application locally (if you don't have npm, you may need to install from https://www.npmjs.com/get-npm)
 4. type `npm run build` into your terminal whle in the /unifit directory
 5. enter google chrome and type 'chrome://extensions' into the url bar
 6. turn developer mode on in the top right and select 'load unpacked' on the left
