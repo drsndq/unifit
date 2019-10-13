@@ -2,6 +2,11 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import MultiStep from "react-multistep";
+import Select from "react-select";
+
+function sortAlphabet(str) {
+  return [...str].sort((a, b) => a.localeCompare(b));
+}
 
 const womensPantSizes = [
   "00",
@@ -33,8 +38,46 @@ const mensWaistSizes = [
 ];
 const mensInseamSizes = ["26", "28", "29", "30", "31", "32", "33", "34", "36"];
 
+const stores = [
+  { value: "ASOS", label: "ASOS" },
+  { value: "Cotton On", label: "Cotton On" },
+  { value: "Lululemon", label: "Lululemon" },
+  { value: "Gucci", label: "Gucci" },
+  { value: "Nasty Gal", label: "Nasty Gal" },
+  { value: "Everlane", label: "Everlane" },
+  { value: "EXPRESS", label: "EXPRESS" },
+  { value: "ModCloth", label: "ModCloth" },
+  { value: "Dolls Kill", label: "Dolls Kill" },
+  { value: "Forever 21", label: "Forever 21" },
+  { value: "PacSun", label: "PacSun" },
+  { value: "Zappos", label: "Zappos" },
+  { value: "Lou and Grey", label: "Lou and Grey" },
+  { value: "Urban Outfitters", label: "Urban Outfitters" },
+  { value: "Francesca's", label: "Francesca's" },
+  { value: "Nordstrom", label: "Nordstrom" },
+  { value: "Planet Blue", label: "Planet Blue" },
+  { value: "Old Navy", label: "Old Navy" },
+  { value: "Fashion Nova", label: "Fashion Nova" },
+  { value: "Target", label: "Target" },
+  { value: "Free People", label: "Free People" },
+  { value: "Madewell", label: "Madewell" },
+  { value: "Macy's", label: "Macy's" },
+  { value: "American Eagle", label: "American Eagle" },
+  { value: "Gap", label: "Gap" },
+  { value: "Bloomingdale's", label: "Bloomingdale's" },
+  { value: "Anthropologie", label: "Anthropologie" },
+  { value: "TJ Maxx", label: "TJ Maxx" },
+  { value: "Neiman Marcus", label: "Neiman Marcus" },
+  { value: "Shopbop", label: "Shopbop" },
+  { value: "Fenty", label: "Fenty" },
+  { value: "New York & Company", label: "New York & Company" },
+  { value: "Bandier", label: "Bandier" },
+  { value: "Evolve", label: "Evolve" },
+  { value: "Beloforte", label: "Beloforte" }
+];
+
 function App() {
-  const [sex, setSex] = React.useState(undefined);
+  const [sex, setSex] = React.useState();
 
   const UserStep = () => {
     return (
@@ -48,24 +91,13 @@ function App() {
   const SexStep = () => {
     return (
       <>
-        <label htmlFor="sex">
-          Which section do you typically buy pants from?
-        </label>
-        <select>
-          <option
-            name="sex"
-            value="female"
-            onClick={event => setSex(event.target.value)}
-          >
-            Women's
-          </option>
-          <option
-            name="sex"
-            value="male"
-            onClick={event => setSex(event.target.value)}
-          >
-            Men's
-          </option>
+        <p>Which section do you typically buy pants from?</p>
+        <select
+          id="sex"
+          onSelect={option => setSex({ sex: option.currentTarget.value })}
+        >
+          <option value="female">Women's</option>
+          <option value="male">Men's</option>
         </select>
       </>
     );
@@ -90,20 +122,8 @@ function App() {
         <label htmlFor="favStore">
           Where'd you buy your favorite shirt from?
         </label>
-        <select name="favStore">
-          <option value="H&M">H&M</option>
-          <option value="Cotton On">Cotton On</option>
-          <option value="Lululemon">Lululemon</option>
-          <option value="Gucci">Gucci</option>
-          <option value="ASOS">ASOS</option>
-          <option value="Fashion Nova">Fashion Nova</option>
-          <option value="F21">Forever 21</option>
-          <option value="Balenciaga">Balenciaga</option>
-          <option value="Dolls Kill">Dolls Kill</option>
-          <option value="Fenty">Fenty</option>
-          <option value="Ralph Lauren">Ralph Lauren</option>
-          <option value="New York & Company">New York & Company</option>
-        </select>
+        <Select 
+        options={stores}/>
       </>
     );
   };
@@ -117,19 +137,19 @@ function App() {
         {sex === "female" ? (
           <select>
             {womensPantSizes.map(size => {
-              return <option value={parseInt(size)}>{parseInt(size)}</option>;
+              return <option value={size}>{parseInt(size)}</option>;
             })}
           </select>
         ) : (
           <>
             <select>
               {mensWaistSizes.map(size => {
-                return <option value={parseInt(size)}>{parseInt(size)}</option>;
+                return <option value={size}>{parseInt(size)}</option>;
               })}
             </select>
             <select>
               {mensInseamSizes.map(size => {
-                return <option value={parseInt(size)}>{parseInt(size)}</option>;
+                return <option value={size}>{parseInt(size)}</option>;
               })}
             </select>
           </>
@@ -137,20 +157,8 @@ function App() {
         <label htmlFor="favStore">
           Where'd you buy your favorite bottoms from?
         </label>
-        <select name="favStore">
-          <option value="H&M">H&M</option>
-          <option value="Cotton On">Cotton On</option>
-          <option value="Lululemon">Lululemon</option>
-          <option value="Gucci">Gucci</option>
-          <option value="ASOS">ASOS</option>
-          <option value="Fashion Nova">Fashion Nova</option>
-          <option value="F21">Forever 21</option>
-          <option value="Balenciaga">Balenciaga</option>
-          <option value="Dolls Kill">Dolls Kill</option>
-          <option value="Fenty">Fenty</option>
-          <option value="Ralph Lauren">Ralph Lauren</option>
-          <option value="New York & Company">New York & Company</option>
-        </select>
+        <Select
+        options={stores} />
         <label htmlFor="type">What kind of bottoms are they?</label>
         <select name="type">
           <option value="Jeans">Jeans</option>
@@ -190,6 +198,7 @@ function App() {
   ];
   return (
     <div>
+      <img src="https://live.staticflickr.com/65535/48890949031_d7a50a2f2b_k.jpg" width="256" height="256" alt="Untitled_Artwork 2" />
       <MultiStep showNavigation={true} steps={steps} />
     </div>
   );
