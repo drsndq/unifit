@@ -13,6 +13,8 @@ to use in your own browser:
 7. enter the 'build' folder of the unifit file and allow it to upload into chrome
 8. you should be good to go!
 
+(relevant files: App.js, manifest.json, App.css)
+
 foreseeable troubleshooting:
 
 if you get an error in google chrome about 'content security privacy' or 'protocol' i honestly can't remember, you may need to `copy the text in the error message starting with 'sha-+' and ending with '='` and then `paste that into the manifest.json file in your local unifit folder`. you will then need to again run `npm run build` in your terminal, go to your chrome browser and select 'load unpacked' again and reload the folder
