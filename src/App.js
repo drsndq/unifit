@@ -77,7 +77,8 @@ const stores = [
 ];
 
 function App() {
-  const [sex, setSex] = React.useState();
+  const [lastStep, setLastStep] = React.useState(false);
+  const [navigationState, setNavigation] = React.useState(true);
 
   const UserStep = () => {
     return (
@@ -94,7 +95,6 @@ function App() {
         <p>Which section do you typically buy pants from?</p>
         <select
           id="sex"
-          onSelect={option => setSex({ sex: option.currentTarget.value })}
         >
           <option value="female">Women's</option>
           <option value="male">Men's</option>
@@ -122,8 +122,7 @@ function App() {
         <label htmlFor="favStore">
           Where'd you buy your favorite shirt from?
         </label>
-        <Select 
-        options={stores}/>
+        <Select options={stores} />
       </>
     );
   };
@@ -134,31 +133,17 @@ function App() {
         <label htmlFor="sizes">
           What's the size of your favorite pair of bottoms?
         </label>
-        {sex === "female" ? (
+        {
           <select>
             {womensPantSizes.map(size => {
               return <option value={size}>{parseInt(size)}</option>;
             })}
           </select>
-        ) : (
-          <>
-            <select>
-              {mensWaistSizes.map(size => {
-                return <option value={size}>{parseInt(size)}</option>;
-              })}
-            </select>
-            <select>
-              {mensInseamSizes.map(size => {
-                return <option value={size}>{parseInt(size)}</option>;
-              })}
-            </select>
-          </>
-        )}
+        }
         <label htmlFor="favStore">
           Where'd you buy your favorite bottoms from?
         </label>
-        <Select
-        options={stores} />
+        <Select options={stores} />
         <label htmlFor="type">What kind of bottoms are they?</label>
         <select name="type">
           <option value="Jeans">Jeans</option>
@@ -189,17 +174,34 @@ function App() {
     );
   };
 
+  const HMStep = () => {
+    setLastStep(true);
+    setNavigation(false);
+    return (
+      <figure>
+    <img src="https://live.staticflickr.com/65535/48890555803_cd16054dd1_k.jpg" alt="logo" width="256" height="256" />
+    <figcaption>UniFit recommends you purchase a Medium</figcaption>
+    </figure>
+    );
+  };
+
   const steps = [
     { name: "Name", component: <UserStep /> },
     { name: "Sexed Sizing", component: <SexStep /> },
     { name: "Tops Fitting", component: <TopsStep /> },
     { name: "Bottoms Fitting", component: <BottomsStep /> },
-    { name: "Complete", component: <CompletionStep /> }
+    { name: "Complete", component: <CompletionStep /> },
+    { name: "H&M", component: <HMStep /> }
   ];
   return (
-    <div>
-      <img src="https://live.staticflickr.com/65535/48890949031_d7a50a2f2b_k.jpg" width="256" height="256" alt="Untitled_Artwork 2" />
-      <MultiStep showNavigation={true} steps={steps} />
+    <div className="app">
+      {!lastStep && <img
+        src="https://live.staticflickr.com/65535/48890949031_d7a50a2f2b_k.jpg"
+        width="256"
+        height="256"
+        alt="Untitled_Artwork 2"
+      />}
+      <MultiStep showNavigation={navigationState} steps={steps} />
     </div>
   );
 }
